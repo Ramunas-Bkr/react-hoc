@@ -1,21 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-class App extends React.Component {
-  
-  state = {
-    starWarsChars: [
-      {name: 'Luke Skywalker', side: 'light'},
-      {name: 'Yoda', side: 'light'},
-      {name: 'Obi-Wan Kenobi', side: 'light'},
-      {name: 'Palpatine', side: 'dark'},
-      {name: 'Darth Vader ', side: 'dark'},
-    ]
-  }
 
-render () {
+const starWarsChars = [
+  {name: 'Luke Skywalker', side: 'light'},
+  {name: 'Yoda', side: 'light'},
+  {name: 'Obi-Wan Kenobi', side: 'light'},
+  {name: 'Palpatine', side: 'dark'},
+  {name: 'Darth Vader ', side: 'dark'},
+]
+const App = ({list, side}) => {
+  
+  const filteredList =  list.filter(key => key.side === side) 
+
     return (
       <ul>
-        {this.state.starWarsChars.map((char, index) => {
+        {filteredList.map((char, index) => {
           return (
             <li key={char.name + index}>
               <strong> {char.name} </strong> - &nbsp;
@@ -26,6 +25,5 @@ render () {
       </ul>
     )
   }
-}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App list={starWarsChars} side="light"/>, document.getElementById('root'));
